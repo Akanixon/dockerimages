@@ -18,7 +18,7 @@ COPY "$G_KEY" /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
 
 # Clone your GitHub repository
-RUN git clone git@github.com:"$USERNAME"/"$REPOSITORY".git
+RUN git clone git@github.com:"$G_USERNAME"/"$G_REPOSITORY".git
 
 # Set the working directory to the cloned repository
 WORKDIR /app/repository
