@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: github-pull.dockerfile
       args:
-        - KEY=${KEY}
+        - G_KEY=${G_KEY}
         - REPOSITORY=${REPOSITORY}
         - USERNAME=${USERNAME}
     container_name: app
@@ -19,7 +19,7 @@ services:
     working_dir: /home/node/data/
     user: "node"
     environment:
-      KEY: ${KEY}
+      G_KEY: ${G_KEY}
       REPOSITORY: ${REPOSITORY}
       USERNAME: ${USERNAME}
 
