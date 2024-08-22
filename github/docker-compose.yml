@@ -7,8 +7,8 @@ services:
       dockerfile: github-pull.dockerfile
       args:
         - G_KEY=${G_KEY}
-        - REPOSITORY=${REPOSITORY}
-        - USERNAME=${USERNAME}
+        - G_REPOSITORY=${G_REPOSITORY}
+        - G_USERNAME=${G_USERNAME}
     container_name: app
     depends_on:
         - directus
@@ -20,8 +20,8 @@ services:
     user: "node"
     environment:
       G_KEY: ${G_KEY}
-      REPOSITORY: ${REPOSITORY}
-      USERNAME: ${USERNAME}
+      G_REPOSITORY: ${G_REPOSITORY}
+      G_USERNAME: ${G_USERNAME}
 
   database:
     image: postgres:16.2
