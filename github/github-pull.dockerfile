@@ -14,7 +14,7 @@ RUN mkdir -p /root/.ssh && \
     ssh-keyscan github.com > /root/.ssh/known_hosts
 
 # Add the SSH key and set permissions
-COPY "$KEY" /root/.ssh/id_rsa
+COPY "$G_KEY" /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
 
 # Clone your GitHub repository
