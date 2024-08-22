@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: github-pull.dockerfile
+      args:
+        - KEY=${KEY}
+        - REPOSITORY=${REPOSITORY}
+        - USERNAME=${USERNAME}
+    container_name: app
+    depends_on:
+        - directus
+    volumes:
+      - app-data:/data
+    networks:
+      - local
+    working_dir: /home/node/data/
+    user: "node"
+    environment:
+      KEY: ${KEY}
+      REPOSITORY: ${REPOSITORY}
+      USERNAME: ${USERNAME}
+
+  database:
+    image: postgres:16.2
+    container_name: database
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    networks:
+      - local
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: ${DB_DATABASE}
+      PGDATA: /var/lib/postgresql/data/
+
+  directus:
+    image: directus/directus:latest
+    container_name: directus
+    depends_on:
+        - database
+    volumes:
+      - directus-data:/data
+    networks:
+      - local
+    working_dir: /directus
+    command: ["/bin/sh","-c","node cli.js bootstrap && pm2-runtime start /directus/data/prod/ecosystem.config.cjs ;"]
+    ports:
+      - 38056:8055
+    environment:
+      KEY: ${KEY}
+      SECRET: ${SECRET}
+      PUBLIC_URL: ${PUBLIC_URL}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      DB_CLIENT: "pg"
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USER: "postgres"
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_SSL: false
+
+      QUERY_LIMIT_DEFAULT: 100000
+      ACCESS_TOKEN_TTL: "60m"
+      REFRESH_TOKEN_TTL: "7d"
+      WEBSOCKETS_ENABLED: "true"
+
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "true"
+      CORS_METHODS: GET,POST,PATCH,DELETE
+      CORS_ALLOWED_HEADERS: Content-Type,Authorization,Access-Control-Allow-Origin
+      CORS_EXPOSED_HEADERS: Content-Range
+      CORS_CREDENTIALS: "true"
+      CORS_MAX_AGE: 18000
+
+      STORAGE_LOCATIONS: 'local'
+      STORAGE_LOCAL_PUBLIC_URL: './data/uploads'
+      STORAGE_LOCAL_DRIVER: 'local'
+      STORAGE_LOCAL_ROOT: './data/uploads'
+      EXTENSIONS_PATH: './data/extensions'
+
+volumes:
+  app-data:
+  directus-data:
+  database-data:
+
+networks:
+  local:
