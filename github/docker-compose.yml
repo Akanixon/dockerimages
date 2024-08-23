@@ -13,7 +13,7 @@ services:
         - directus
     volumes:
       - app-data:/data
-      - /root/.ssh/g_wishbot:/root/.ssh/rokey:ro
+      - /root/.ssh/g_wishbot:/root/.ssh/g_wishbot:ro
     networks:
       - local
     working_dir: /home/node/data/
