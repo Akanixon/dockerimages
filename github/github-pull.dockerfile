@@ -18,6 +18,12 @@ ARG G_KEY
 RUN echo  "$G_KEY" | base64 --decode > /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
 
+# Debugging: Check SSH key permissions
+RUN ls -l /root/.ssh
+
+# Debugging: Test SSH connection to GitHub
+RUN ssh -T git@github.com || true
+
 # Clone your GitHub repository
 ARG G_USERNAME
 ARG G_REPOSITORY
