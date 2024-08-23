@@ -6,17 +6,17 @@ services:
       context: .
       dockerfile: github-pull.dockerfile
       args:
-        - G_REPOSITORY=${G_REPOSITORY}
-        - G_USERNAME=${G_USERNAME}
+        - G_REPOSITORY=wishbot
+        - G_USERNAME=akanixon
     container_name: app
     depends_on:
         - directus
     volumes:
       - app-data:/data
-      - /var/lib/docker/volumes/keys/_data/${G_REPOSITORY}/key:/home/node/key:ro
+      - /var/lib/docker/volumes/keys/_data/wishbot/key:/home/node/key:ro
     networks:
       - local
-    working_dir: /home/node/app/${G_REPOSITORY}/
+    working_dir: /home/node/app/wishbot/
     user: "node"
   database:
     image: postgres:16.2
