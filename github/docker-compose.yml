@@ -8,12 +8,13 @@ services:
       args:
         - G_REPOSITORY=wishbot
         - G_USERNAME=akanixon
+    secrets:
+      - github_key
     container_name: app
     depends_on:
         - directus
     volumes:
       - app-data:/data
-      - /var/lib/docker/volumes/keys/_data/wishbot/key:/home/node/key:ro
     networks:
       - local
     working_dir: /home/node/app/wishbot/
@@ -84,3 +85,6 @@ volumes:
 
 networks:
   local:
+secrets:
+  github:_key:
+    file: ${G_KEY_PATH}
