@@ -14,9 +14,9 @@ RUN mkdir -p /root/.ssh && \
     ssh-keyscan github.com > /root/.ssh/known_hosts
 
 # Add the SSH key and set permissions
-ARG G_KEY
-COPY ${G_KEY} /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
+# ARG G_KEY
+# COPY ${G_KEY} /root/.ssh/id_rsa
+# RUN chmod 600 /root/.ssh/id_rsa
 
 # Debugging: Check SSH key permissions
 RUN ls -l /root/.ssh
