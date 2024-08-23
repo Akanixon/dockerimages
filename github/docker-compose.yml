@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: github-pull.dockerfile
       args:
-        - G_KEY=${G_KEY}
         - G_REPOSITORY=${G_REPOSITORY}
         - G_USERNAME=${G_USERNAME}
     container_name: app
@@ -14,6 +13,7 @@ services:
         - directus
     volumes:
       - app-data:/data
+      - ${G_KEY}:/root/.ssh/id_rsa:ro
     networks:
       - local
     working_dir: /home/node/data/
