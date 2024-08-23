@@ -23,7 +23,7 @@ ARG G_REPOSITORY
 RUN GIT_SSH_COMMAND="ssh -i /root/.ssh/id_rsa" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
 
 # Set the working directory to the cloned repository
-WORKDIR /app/repository
+WORKDIR /app/$G_REPOSITORY
 
 # Install project dependencies
 RUN npm install
