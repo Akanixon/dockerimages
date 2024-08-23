@@ -16,7 +16,7 @@ services:
       - /var/lib/docker/volumes/keys/_data/wishbot/key:/root/key:ro
     networks:
       - local
-    working_dir: /home/node/data/
+    working_dir: /home/node/app/${G_REPOSITORY}/
     user: "node"
   database:
     image: postgres:16.2
