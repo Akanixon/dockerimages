@@ -20,7 +20,7 @@ WORKDIR /app
 # Clone your GitHub repository
 ARG G_USERNAME
 ARG G_REPOSITORY
-RUN GIT_SSH_COMMAND="ssh -i /../.ssh/id_rsa" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
+RUN GIT_SSH_COMMAND="ssh -i /home/node/.ssh/id_rsa" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
 
 # Set the working directory to the cloned repository
 WORKDIR /app/$G_REPOSITORY
