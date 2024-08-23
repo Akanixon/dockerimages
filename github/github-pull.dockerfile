@@ -14,12 +14,12 @@ RUN mkdir -p /root/.ssh && \
     ssh-keyscan github.com > /root/.ssh/known_hosts
 
 # Add the SSH key and set permissions
-RUN chmod 600 /root/.ssh/g_wishbot
+RUN chmod 600 /root/.ssh/key
 
 # Clone your GitHub repository
 ARG G_USERNAME
 ARG G_REPOSITORY
-RUN GIT_SSH_COMMAND="ssh -i /root/.ssh/g_wishbot" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
+RUN GIT_SSH_COMMAND="ssh -i /root/.ssh/key" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
 
 # Set the working directory to the cloned repository
 WORKDIR /app/repository
