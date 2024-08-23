@@ -19,7 +19,6 @@ services:
     working_dir: /home/node/data/
     user: "node"
     environment:
-      G_KEY: ${G_KEY}
       G_REPOSITORY: ${G_REPOSITORY}
       G_USERNAME: ${G_USERNAME}
 
