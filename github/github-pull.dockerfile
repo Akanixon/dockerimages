@@ -7,12 +7,12 @@ RUN apt-get update && \
 WORKDIR /home/node
 # Authorize SSH Host
 RUN mkdir -p .ssh && \
-    chmod 0700 ./.ssh && \
-    ssh-keyscan github.com >> ./.ssh/known_hosts
+    chmod 0700 .ssh && \
+    ssh-keyscan github.com >> .ssh/known_hosts
 
 # Add the SSH key and set permissions
-COPY ./key ./.ssh/id_rsa 
-RUN chmod 600 ./.ssh/id_rsa
+COPY key .ssh/id_rsa 
+RUN chmod 600 .ssh/id_rsa
 
 # Set the working directory
 WORKDIR /app
