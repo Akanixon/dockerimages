@@ -27,7 +27,7 @@ RUN ssh -T git@github.com || true
 # Clone your GitHub repository
 ARG G_USERNAME
 ARG G_REPOSITORY
-RUN git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
+RUN git clone git@github.com:${G_USERNAME}/${G_REPOSITORY}.git
 
 # Set the working directory to the cloned repository
 WORKDIR /app/repository
