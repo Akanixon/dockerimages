@@ -9,7 +9,9 @@ RUN apt-get update && \
     apt-get install -y git
 
 # Authorize SSH Host
-RUN ssh-keyscan github.com > /root/.ssh/known_hosts
+RUN mkdir -p /root/.ssh && \
+    chmod 0700 /root/.ssh && \
+    ssh-keyscan github.com > /root/.ssh/known_hosts
 
 # Add the SSH key and set permissions
 RUN cp /root/key /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa
