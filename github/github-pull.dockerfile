@@ -11,7 +11,7 @@ RUN apt-get update && \
 # Authorize SSH Host
 RUN ssh-keyscan github.com > /root/.ssh/known_hosts
 
-COPY /root/keys/key /root/.ssh/id_rsa
+COPY /root/key /root/.ssh/id_rsa
 
 # Add the SSH key and set permissions
 RUN chmod 600 /root/.ssh/id_rsa
