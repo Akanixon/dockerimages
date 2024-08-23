@@ -13,15 +13,11 @@ services:
         - directus
     volumes:
       - app-data:/data
-      - /root/.ssh/g_wishbot:/root/.ssh/g_wishbot:ro
+      - /root/.ssh/g_wishbot:/root/.ssh/key
     networks:
       - local
     working_dir: /home/node/data/
     user: "node"
-    environment:
-      G_REPOSITORY: ${G_REPOSITORY}
-      G_USERNAME: ${G_USERNAME}
-
   database:
     image: postgres:16.2
     container_name: database
