@@ -11,7 +11,7 @@ RUN mkdir -p /node/.ssh && \
     ssh-keyscan github.com >> /node/.ssh/known_hosts
 
 # Add the SSH key and set permissions
-COPY id_rsa /node/.ssh/id_rsa /root/key /node/.ssh/id_rsa 
+COPY /node/key /node/.ssh/id_rsa 
 RUN chmod 600 /node/.ssh/id_rsa
 
 # Set the working directory
