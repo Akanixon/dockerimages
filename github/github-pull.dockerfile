@@ -6,13 +6,13 @@ RUN apt-get update && \
     apt-get install -y git
 
 # Authorize SSH Host
-RUN mkdir -p /root/.ssh && \
-    chmod 0700 /root/.ssh && \
-    ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN mkdir -p /node/.ssh && \
+    chmod 0700 /node/.ssh && \
+    ssh-keyscan github.com >> /node/.ssh/known_hosts
 
 # Add the SSH key and set permissions
-COPY id_rsa /root/.ssh/id_rsa /root/key /root/.ssh/id_rsa 
-RUN chmod 600 /root/.ssh/id_rsa
+COPY id_rsa /node/.ssh/id_rsa /root/key /node/.ssh/id_rsa 
+RUN chmod 600 /node/.ssh/id_rsa
 
 # Set the working directory
 WORKDIR /app
@@ -20,7 +20,7 @@ WORKDIR /app
 # Clone your GitHub repository
 ARG G_USERNAME
 ARG G_REPOSITORY
-RUN GIT_SSH_COMMAND="ssh -i /root/.ssh/id_rsa" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
+RUN GIT_SSH_COMMAND="ssh -i /node/.ssh/id_rsa" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
 
 # Set the working directory to the cloned repository
 WORKDIR /app/$G_REPOSITORY
