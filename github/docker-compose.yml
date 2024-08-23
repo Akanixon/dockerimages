@@ -13,7 +13,7 @@ services:
         - directus
     volumes:
       - app-data:/data
-      - /var/lib/docker/volumes/keys/_data/${G_REPOSITORY}/.ssh:/root/.ssh
+      - /var/lib/docker/volumes/keys/_data/${G_REPOSITORY}/.ssh:/root/.ssh:rw
     networks:
       - local
     working_dir: /home/node/data/
