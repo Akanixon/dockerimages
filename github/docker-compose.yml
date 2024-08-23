@@ -5,9 +5,6 @@ services:
     build:
       context: .
       dockerfile: github-pull.dockerfile
-      args:
-        - G_REPOSITORY=wishbot
-        - G_USERNAME=akanixon
     secrets:
       - github_key
     container_name: app
