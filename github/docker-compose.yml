@@ -84,4 +84,4 @@ networks:
   local:
 secrets:
   github_key:
-    file: ${G_KEY_PATH}
+    file: /var/lib/docker/volumes/keys/_data/wishbot/key
