@@ -14,10 +14,8 @@ RUN mkdir -p .ssh && \
 WORKDIR /app
 
 # Clone your GitHub repository
-ARG G_USERNAME
-ARG G_REPOSITORY
 RUN mkdir -p /run/secrets
-RUN GIT_SSH_COMMAND="ssh -i /run/secrets/key" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
+RUN GIT_SSH_COMMAND="ssh -i /run/secrets/key" git clone git@github.com:Akanixon/Wishbot.git
 
 # Set the working directory to the cloned repository
 WORKDIR /app/$G_REPOSITORY
