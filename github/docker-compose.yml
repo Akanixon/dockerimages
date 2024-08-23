@@ -86,5 +86,5 @@ volumes:
 networks:
   local:
 secrets:
-  github:_key:
+  github_key:
     file: ${G_KEY_PATH}
