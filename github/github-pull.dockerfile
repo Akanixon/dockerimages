@@ -11,10 +11,8 @@ RUN apt-get update && \
 # Authorize SSH Host
 RUN ssh-keyscan github.com > /root/.ssh/known_hosts
 
-COPY /root/key /root/.ssh/id_rsa
-
 # Add the SSH key and set permissions
-RUN chmod 600 /root/.ssh/id_rsa
+RUN cp /root/key /root/.ssh/id_rsa && chmod 600 /root/.ssh/id_rsa
 
 # Clone your GitHub repository
 ARG G_USERNAME
