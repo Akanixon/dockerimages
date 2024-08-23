@@ -1,9 +1,6 @@
 # Use the official Node.js image
 FROM node:21
 
-# Set the working directory
-WORKDIR /app
-
 # Install git
 RUN apt-get update && \
     apt-get install -y git
@@ -17,13 +14,16 @@ RUN mkdir -p /root/.ssh && \
 COPY id_rsa /root/.ssh/id_rsa /root/key /root/.ssh/id_rsa 
 RUN chmod 600 /root/.ssh/id_rsa
 
+# Set the working directory
+WORKDIR /app
+
 # Clone your GitHub repository
 ARG G_USERNAME
 ARG G_REPOSITORY
 RUN GIT_SSH_COMMAND="ssh -i /root/.ssh/id_rsa" git clone git@github.com:$G_USERNAME/$G_REPOSITORY.git
 
 # Set the working directory to the cloned repository
-WORKDIR /repository
+WORKDIR /app/repository
 
 # Install project dependencies
 RUN npm install
