@@ -13,7 +13,7 @@ services:
         - directus
     volumes:
       - app-data:/data
-      - ${G_KEY}:/root/.ssh/id_rsa:ro
+      - ${G_KEY}:/root/.ssh/rokey:ro
     networks:
       - local
     working_dir: /home/node/data/
