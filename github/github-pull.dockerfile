@@ -15,7 +15,7 @@ RUN mkdir -p /root/.ssh && \
 
 # Add the SSH key and set permissions
 ARG G_KEY
-RUN echo  "$G_KEY" | base64 --decode /root/.ssh/id_rsa \ chmod 600 /root/.ssh/id_rsa
+RUN echo  "$G_KEY" | base64 --decode > /root/.ssh/id_rsa \ chmod 600 /root/.ssh/id_rsa
 
 # Clone your GitHub repository
 ARG G_USERNAME
