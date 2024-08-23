@@ -15,8 +15,8 @@ RUN mkdir -p /root/.ssh && \
 
 # Add the SSH key and set permissions
 # ARG G_KEY
-# COPY ${G_KEY} /root/.ssh/id_rsa
-# RUN chmod 600 /root/.ssh/id_rsa
+COPY /root/.ssh/rokey /root/.ssh/githubkey
+RUN chmod 600 /root/.ssh/githubkey
 
 # Debugging: Check SSH key permissions
 RUN ls -l /root/.ssh
